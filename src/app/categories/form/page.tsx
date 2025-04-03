@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useActionState } from "react";
 
 const initialState = {
-  value: {
+  values: {
     name: "",
     icon: "",
   },
@@ -33,12 +33,14 @@ export default function CategoriesForm() {
           <form action={formAction} className="space-y-4 mt-6">
 
             <div>
-                <Input name="name" placeholder="nome da categoria" aria-invalid={!!state?.errors.name} />
+                <Input name="name" placeholder="nome da categoria" aria-invalid={!!state?.errors.name} defaultValue={state?.values.name}/>
                 <span className="text-sm text-destructive">{state?.errors.name}</span>
             </div>
 
             <div>
-                <Input name="icon" placeholder="nome do ícone" aria-invalid={!!state?.errors.icon} />
+                {/* aria-invalid no shadcn -> indicar visualmente com a borda vermelha */}
+                {/* !! -> string para boolean, pois o aria-invalid recebe boolean */}
+                <Input name="icon" placeholder="nome do ícone" aria-invalid={!!state?.errors.icon} defaultValue={state?.values.icon}/>
                 <span className="text-sm text-destructive">{state?.errors.icon}</span>
             </div>
             
